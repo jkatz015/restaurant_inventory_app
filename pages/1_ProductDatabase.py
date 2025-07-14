@@ -136,7 +136,25 @@ def format_currency_small(amount):
     except:
         return f"${amount:.2f}"
 
-# Ensure data folder and file exist
+def migrate_existing_data():
+    """Migrate existing data to include SKU and Pack Size columns if they don't exist"""
+    try:
+        if os.path.exists(DATA_FILE):
+            df = pd.read_csv(DATA_FILE)
+            if "SKU" not in df.columns:
+                # Add SKU column with empty values
+                df.insert(1, "SKU", "")
+                df.to_csv(DATA_FILE, index=False)
+                st.success("Data migrated to include SKU column!")
+            
+            if "Pack Size" not in df.columns:
+                # Add Pack Size column with empty values (after Category column)
+                df.insert(3, "Pack Size", "")
+                df.to_csv(DATA_FILE, index=False)
+                st.success("Data migrated to include Pack Size column!")
+    except Exception as e:
+        st.error(f"Error migrating data: {e}")
+
 def initialize_product_data():
     """Initialize the product data file if it doesn't exist"""
     try:
@@ -145,12 +163,17 @@ def initialize_product_data():
         if not os.path.exists(DATA_FILE):
             df = pd.DataFrame({
                 "Product Name": pd.Series(dtype="str"),
+                "SKU": pd.Series(dtype="str"),
                 "Category": pd.Series(dtype="str"),
+                "Pack Size": pd.Series(dtype="str"),
                 "Unit": pd.Series(dtype="str"),
                 "Cost per Unit": pd.Series(dtype="float"),
                 "Cost per Oz": pd.Series(dtype="float")  # New column for cost per ounce
             })
             df.to_csv(DATA_FILE, index=False)
+        else:
+            # Migrate existing data to include SKU column
+            migrate_existing_data()
     except Exception as e:
         st.error(f"Error initializing product data: {e}")
 
@@ -197,7 +220,9 @@ def load_products():
         st.error(f"Error loading products: {e}")
         return pd.DataFrame({
             "Product Name": pd.Series(dtype="str"),
+            "SKU": pd.Series(dtype="str"),
             "Category": pd.Series(dtype="str"),
+            "Pack Size": pd.Series(dtype="str"),
             "Unit": pd.Series(dtype="str"),
             "Cost per Unit": pd.Series(dtype="float"),
             "Cost per Oz": pd.Series(dtype="float")
@@ -299,10 +324,12 @@ def main():
     
     with st.form("add_product_form", clear_on_submit=True):
         product_name = st.text_input(get_text("product_name", current_lang))
+        sku = st.text_input("SKU")
         
         # Use language-specific categories
         categories = RESTAURANT_CATEGORIES_ES if current_lang == "es" else RESTAURANT_CATEGORIES_EN
         category = st.selectbox(get_text("category", current_lang), categories)
+        pack_size = st.text_input("Pack Size")
         
         # Use language-specific units
         units = UNITS_ES if current_lang == "es" else UNITS_EN
@@ -328,7 +355,9 @@ def main():
                 else:
                     new_product = {
                         "Product Name": product_name,
+                        "SKU": sku,
                         "Category": category,
+                        "Pack Size": pack_size,
                         "Unit": unit,
                         "Cost per Unit": cost_per_unit
                     }
@@ -361,10 +390,20 @@ def main():
         if isinstance(filtered_df, pd.DataFrame) and not filtered_df.empty:
             # Create a formatted display dataframe
             display_df = filtered_df.copy()
+            
+            # Ensure SKU is treated as text (not numeric) for left alignment
+            if 'SKU' in display_df.columns:
+                # Add a space prefix to force text treatment and left alignment
+                display_df['SKU'] = ' ' + display_df['SKU'].astype(str)
+            
             if 'Cost per Unit' in display_df.columns:
                 display_df['Cost per Unit'] = display_df['Cost per Unit'].apply(format_currency)
             if 'Cost per Oz' in display_df.columns:
                 display_df['Cost per Oz'] = display_df['Cost per Oz'].apply(format_currency_small)
+            
+            # Reorder columns to move Cost per Unit before Unit
+            if all(col in display_df.columns for col in ['Product Name', 'SKU', 'Category', 'Pack Size', 'Unit', 'Cost per Unit', 'Cost per Oz']):
+                display_df = display_df[['Product Name', 'SKU', 'Category', 'Pack Size', 'Cost per Unit', 'Unit', 'Cost per Oz']]
             
             st.dataframe(display_df, use_container_width=True)
             st.caption(get_text("showing_products", current_lang, filtered=len(filtered_df), total=len(products_df)))
@@ -407,6 +446,8 @@ def main():
                         st.write(get_text("editing", current_lang, name=product_to_edit))
                         
                         new_name = st.text_input(get_text("product_name", current_lang), value=current_product["Product Name"])
+                        new_sku = st.text_input("SKU", value=current_product.get("SKU", ""))
+                        new_pack_size = st.text_input("Pack Size", value=current_product.get("Pack Size", ""))
                         
                         # Use language-specific categories for edit form
                         categories = RESTAURANT_CATEGORIES_ES if current_lang == "es" else RESTAURANT_CATEGORIES_EN
@@ -444,7 +485,9 @@ def main():
                                 else:
                                     updated_product = {
                                         "Product Name": new_name,
+                                        "SKU": new_sku,
                                         "Category": new_category,
+                                        "Pack Size": new_pack_size,
                                         "Unit": new_unit,
                                         "Cost per Unit": new_cost
                                     }

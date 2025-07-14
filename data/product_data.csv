@@ -1,4 +1,4 @@
-Product Name,Category,Unit,Cost per Unit,Cost per Oz
-Steak-Ribeye,Beef,lb,14.0,0.875
-Seabass,Fish,lb,19.89,1.2431
-papas,Produce,case,20.0,0.1
+Product Name,SKU,Category,Pack Size,Unit,Cost per Unit,Cost per Oz
+Steak-Ribeye,4837261,Beef,30 lbs case,lb,14.0,0.88
+Seabass,9201547,Fish,10.0 lbs case,lb,19.89,1.24
+Potato Baby Red,7153084,Produce,40.0 lb case,case,20.0,0.1
