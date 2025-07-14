@@ -6,6 +6,7 @@
     "prep_time": 15,
     "cook_time": 20,
     "category": "Main Course",
+    "instructions": "1. Boil pasta in salted water until al dente\n2. Whisk eggs and cheese in a bowl\n3. Cook pancetta until crispy\n4. Toss hot pasta with egg mixture and pancetta\n5. Season with black pepper and serve immediately",
     "ingredients": [
       {
         "product_name": "Flour All Purpose",
@@ -33,48 +34,45 @@
         "unit": "lb"
       }
     ],
+    "total_cost": 27.120000000000005,
     "ingredient_costs": [
       {
         "product_name": "Flour All Purpose",
         "quantity": 1.0,
         "unit": "lb",
-        "cost": 0.45,
-        "unit_cost": 0.45
+        "cost": 0.85,
+        "unit_cost": 0.85
       },
       {
         "product_name": "Eggs Large",
         "quantity": 4.0,
         "unit": "each",
-        "cost": 0.83,
-        "unit_cost": 2.5
+        "cost": 15.8,
+        "unit_cost": 3.95
       },
       {
         "product_name": "Parmesan Cheese",
         "quantity": 0.5,
         "unit": "lb",
-        "cost": 6.0,
-        "unit_cost": 12.0
+        "cost": 8.875,
+        "unit_cost": 17.75
       },
       {
         "product_name": "Black Pepper Ground",
         "quantity": 0.1,
         "unit": "lb",
-        "cost": 0.85,
-        "unit_cost": 8.5
+        "cost": 1.225,
+        "unit_cost": 12.25
       },
       {
         "product_name": "Salt Kosher",
         "quantity": 0.2,
         "unit": "lb",
-        "cost": 0.24,
-        "unit_cost": 1.2
+        "cost": 0.37000000000000005,
+        "unit_cost": 1.85
       }
     ],
-    "total_cost": 8.37,
-    "cost_per_serving": 2.09,
-    "instructions": "1. Boil pasta in salted water until al dente\n2. Whisk eggs and cheese in a bowl\n3. Cook pancetta until crispy\n4. Toss hot pasta with egg mixture and pancetta\n5. Season with black pepper and serve immediately",
-    "created_date": "2024-01-15T10:30:00",
-    "last_modified": "2024-01-15T10:30:00"
+    "updated_at": "2025-07-14T10:49:00.544906"
   },
   "Grilled Chicken with Herbs": {
     "name": "Grilled Chicken with Herbs",

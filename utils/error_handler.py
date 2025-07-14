@@ -17,14 +17,22 @@ from pathlib import Path
 from config import config
 
 # Configure logging
-logging.basicConfig(
-    level=getattr(logging, config.LOG_LEVEL),
-    format=config.LOG_FORMAT,
-    handlers=[
-        logging.FileHandler(config.LOG_FILE),
-        logging.StreamHandler(sys.stdout)
-    ]
-)
+try:
+    logging.basicConfig(
+        level=getattr(logging, config.LOG_LEVEL),
+        format=config.LOG_FORMAT,
+        handlers=[
+            logging.FileHandler(config.LOG_FILE),
+            logging.StreamHandler(sys.stdout)
+        ]
+    )
+except Exception:
+    # Fallback if stdout is not available
+    logging.basicConfig(
+        level=getattr(logging, config.LOG_LEVEL),
+        format=config.LOG_FORMAT,
+        handlers=[logging.FileHandler(config.LOG_FILE)]
+    )
 logger = logging.getLogger(__name__)
 
 class AppError(Exception):

@@ -8,7 +8,7 @@ from typing import Dict, List, Any, Optional
 from modules.inventory_engine import (
     get_inventory_text, load_counts, load_count_history, create_new_count, 
     get_count, update_count_item, auto_save_count_item, get_count_items_by_location,
-    complete_count, delete_count, get_count_summary, export_count_to_csv, get_available_locations
+    complete_count, delete_count, get_count_summary, export_count_to_csv, get_count_csv_data, get_available_locations
 )
 from utils.shared_functions import load_products
 
@@ -333,12 +333,18 @@ def main():
                 col1, col2 = st.columns(2)
                 
                 with col1:
-                    if st.button("📊 Export to CSV"):
-                        success, message = export_count_to_csv(export_count)
-                        if success:
-                            st.success(message)
-                        else:
-                            st.error(message)
+                    # Get CSV data for download
+                    csv_data, filename = get_count_csv_data(export_count)
+                    if csv_data:
+                        st.download_button(
+                            label="📊 Download CSV",
+                            data=csv_data,
+                            file_name=filename,
+                            mime="text/csv",
+                            help="Download count data as CSV file"
+                        )
+                    else:
+                        st.error("Error generating CSV data")
                 
                 with col2:
                     # Show count summary

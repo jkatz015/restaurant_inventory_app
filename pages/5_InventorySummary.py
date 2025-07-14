@@ -6,7 +6,7 @@ import json
 # Import modules
 from modules.summary_engine import (
     get_summary_text, get_count_summary_by_location, get_all_counts_summary,
-    export_summary_to_csv, get_summary_statistics
+    export_summary_to_csv, get_summary_csv_data, get_summary_statistics
 )
 from modules.inventory_engine import load_counts, load_count_history, update_count_item
 from utils.shared_functions import format_currency, format_currency_small
@@ -81,12 +81,17 @@ def main():
                     st.metric("Value Variance", format_currency(variance))
                 
                 # Export button
-                if st.button("📊 Export Summary to CSV", type="primary"):
-                    success, message = export_summary_to_csv(selected_count)
-                    if success:
-                        st.success(message)
-                    else:
-                        st.error(message)
+                csv_data, filename = get_summary_csv_data(selected_count)
+                if csv_data:
+                    st.download_button(
+                        label="📊 Download Summary CSV",
+                        data=csv_data,
+                        file_name=filename,
+                        mime="text/csv",
+                        help="Download detailed summary with location breakdown"
+                    )
+                else:
+                    st.error("Error generating summary CSV data")
                 
                 st.markdown("---")
                 

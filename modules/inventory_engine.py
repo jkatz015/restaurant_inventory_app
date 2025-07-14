@@ -545,3 +545,35 @@ def export_count_to_csv(count_name):
         return True, f"Count exported to {filename}"
     except Exception as e:
         return False, f"Error exporting count: {e}"
+
+def get_count_csv_data(count_name):
+    """Get count data as CSV string for download"""
+    try:
+        count = get_count(count_name)
+        if not count:
+            return None, f"Count '{count_name}' not found!"
+        
+        # Create DataFrame
+        data = []
+        for item in count['items']:
+            data.append({
+                'Product Name': item['product_name'],
+                'SKU': item['sku'],
+                'Expected Qty': item['expected_qty'],
+                'Actual Qty': item['actual_qty'] if item['actual_qty'] is not None else '',
+                'Unit': item['unit'],
+                'Location': item['location'],
+                'Current Price': item['current_price'],
+                'Variance': item.get('variance', ''),
+                'Variance %': item.get('variance_percent', ''),
+                'Notes': item['notes']
+            })
+        
+        df = pd.DataFrame(data)
+        
+        # Convert to CSV string
+        csv_data = df.to_csv(index=False)
+        
+        return csv_data, f"count_{count_name}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv"
+    except Exception as e:
+        return None, f"Error generating CSV data: {e}"

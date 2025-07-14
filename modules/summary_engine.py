@@ -246,6 +246,46 @@ def export_summary_to_csv(count_name):
     except Exception as e:
         return False, f"Error exporting summary: {e}"
 
+def get_summary_csv_data(count_name):
+    """Get summary data as CSV string for download"""
+    try:
+        summary = get_count_summary_by_location(count_name)
+        if not summary:
+            return None, "Count not found or no data available"
+        
+        # Create detailed CSV data
+        csv_data = []
+        
+        for location in summary['sorted_locations']:
+            location_data = summary['location_summaries'][location]
+            
+            for item in location_data['items']:
+                csv_data.append({
+                    'Count Name': summary['count_name'],
+                    'Location': location,
+                    'Product Name': item['product_name'],
+                    'SKU': item['sku'],
+                    'Expected Qty': item['expected_qty'],
+                    'Actual Qty': item['actual_qty'] if item['actual_qty'] is not None else '',
+                    'Unit': item['unit'],
+                    'Unit Price': item['unit_price'],
+                    'Expected Value': item['expected_value'],
+                    'Actual Value': item['actual_value'],
+                    'Variance': item['variance'],
+                    'Variance %': item['variance_percent'],
+                    'Counted': 'Yes' if item['is_counted'] else 'No'
+                })
+        
+        df = pd.DataFrame(csv_data)
+        
+        # Convert to CSV string
+        csv_string = df.to_csv(index=False)
+        
+        return csv_string, f"summary_{count_name}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv"
+        
+    except Exception as e:
+        return None, f"Error generating CSV data: {e}"
+
 def get_summary_statistics():
     """Get overall summary statistics across all counts"""
     try:
