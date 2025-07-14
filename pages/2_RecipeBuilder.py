@@ -95,7 +95,25 @@ def main():
             
             with col2:
                 cook_time = st.number_input(get_text("cook_time", current_lang), min_value=0, value=45)
-                category = st.text_input(get_text("category", current_lang))
+                
+                # Category dropdown with predefined options
+                category_options = [
+                    "Main Course", "Appetizer", "Dessert", "Soup", "Salad", 
+                    "Side Dish", "Beverage", "Sauce", "Dressing", "Marinade", "Prep Recipe", "Bar", "Other"
+                ]
+                
+                # Get existing categories from recipes and add to options (excluding "Test")
+                existing_categories = get_recipe_categories(recipes)
+                for cat in existing_categories:
+                    if cat not in category_options and cat != "Test":
+                        category_options.append(cat)
+                
+                category = st.selectbox(
+                    get_text("category", current_lang),
+                    category_options,
+                    index=0
+                )
+                
                 instructions = st.text_area(get_text("cooking_instructions", current_lang))
             
             submitted = st.form_submit_button(get_text("save_recipe", current_lang))
@@ -203,21 +221,33 @@ def main():
                     recipe = filtered_recipes[recipe_to_edit]
                     st.write(get_text("editing_recipe", current_lang, name=recipe_to_edit))
                     
-                    # Initialize edit ingredients
-                    if "edit_ingredients" not in st.session_state:
-                        st.session_state.edit_ingredients = recipe.get('ingredients', []).copy()
+                    # Initialize edit ingredients - always load current recipe ingredients
+                    st.session_state.edit_ingredients = recipe.get('ingredients', []).copy()
                     
                     # Edit ingredients outside of form
                     st.write("### " + get_text("ingredients", current_lang))
                     
+                    # Debug: Show current ingredients
+                    if st.session_state.edit_ingredients:
+                        st.info(f"Found {len(st.session_state.edit_ingredients)} ingredients to edit")
+                    else:
+                        st.warning("No ingredients found in recipe")
+                    
                     for i, ingredient in enumerate(st.session_state.edit_ingredients):
                         col1, col2, col3, col4 = st.columns([3, 1, 1, 1])
                         with col1:
+                            # Check if product exists in current database
+                            available_products = products_df['Product Name'].tolist()
+                            current_product = ingredient['product_name']
+                            
+                            if current_product not in available_products:
+                                st.warning(f"Product '{current_product}' not found in database")
+                            
                             product_name = st.selectbox(
                                 get_text("product", current_lang),
-                                products_df['Product Name'].tolist(),
+                                available_products,
                                 key=f"edit_product_{i}",
-                                index=products_df['Product Name'].tolist().index(ingredient['product_name']) if ingredient['product_name'] in products_df['Product Name'].tolist() else 0
+                                index=available_products.index(current_product) if current_product in available_products else 0
                             )
                         with col2:
                             quantity = st.number_input(
@@ -268,7 +298,31 @@ def main():
                         
                         with col2:
                             new_cook_time = st.number_input(get_text("cook_time", current_lang), min_value=0, value=recipe.get('cook_time', 45))
-                            new_category = st.text_input(get_text("category", current_lang), value=recipe.get('category', ''))
+                            
+                            # Category dropdown for edit form
+                            edit_category_options = [
+                                "Main Course", "Appetizer", "Dessert", "Soup", "Salad", 
+                                "Side Dish", "Beverage", "Sauce", "Dressing", "Marinade", "Prep Recipe", "Bar", "Other"
+                            ]
+                            
+                            # Get existing categories and add to options (excluding "Test")
+                            existing_categories = get_recipe_categories(recipes)
+                            for cat in existing_categories:
+                                if cat not in edit_category_options and cat != "Test":
+                                    edit_category_options.append(cat)
+                            
+                            # Find current category index
+                            current_category = recipe.get('category', '')
+                            category_index = 0
+                            if current_category in edit_category_options:
+                                category_index = edit_category_options.index(current_category)
+                            
+                            new_category = st.selectbox(
+                                get_text("category", current_lang),
+                                edit_category_options,
+                                index=category_index
+                            )
+                            
                             new_instructions = st.text_area(get_text("cooking_instructions", current_lang), value=recipe.get('instructions', ''))
                         
                         col1, col2 = st.columns(2)

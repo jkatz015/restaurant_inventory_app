@@ -3,8 +3,14 @@ import os
 import json
 from datetime import datetime
 
-# Language translations
-TRANSLATIONS = {
+# Import shared functions
+from utils.shared_functions import (
+    get_text, load_products, format_currency, format_currency_small,
+    load_json_file, save_json_file, get_available_categories
+)
+
+# Language translations for recipe-specific text
+RECIPE_TRANSLATIONS = {
     "en": {
         "page_title": "👨‍🍳 Recipe Builder",
         "page_caption": "Create and manage recipes with detailed ingredient lists and cost calculations",
@@ -95,50 +101,25 @@ TRANSLATIONS = {
     }
 }
 
-def get_text(key, lang="en", **kwargs):
-    """Get translated text for the given key"""
-    if lang not in TRANSLATIONS:
+def get_recipe_text(key, lang="en", **kwargs):
+    """Get translated text for recipe-specific keys"""
+    if lang not in RECIPE_TRANSLATIONS:
         lang = "en"
-    text = TRANSLATIONS[lang].get(key, key)
+    text = RECIPE_TRANSLATIONS[lang].get(key, key)
     if text is None:
         text = key
     return text.format(**kwargs) if kwargs else text
 
 # File paths
 RECIPES_FILE = "data/recipes.json"
-PRODUCTS_FILE = "data/product_data.csv"
-
-def load_products() -> pd.DataFrame:
-    """Load products from the Product Database"""
-    try:
-        if os.path.exists(PRODUCTS_FILE):
-            return pd.read_csv(PRODUCTS_FILE)
-        else:
-            return pd.DataFrame()
-    except Exception as e:
-        return pd.DataFrame()
 
 def load_recipes() -> dict:
     """Load recipes from JSON file"""
-    try:
-        if os.path.exists(RECIPES_FILE):
-            with open(RECIPES_FILE, 'r') as f:
-                return json.load(f)
-        else:
-            return {}
-    except Exception as e:
-        return {}
+    return load_json_file(RECIPES_FILE)
 
 def save_recipes(recipes: dict) -> bool:
     """Save recipes to JSON file"""
-    try:
-        # Ensure data directory exists
-        os.makedirs("data", exist_ok=True)
-        with open(RECIPES_FILE, 'w') as f:
-            json.dump(recipes, f, indent=2)
-        return True
-    except Exception as e:
-        return False
+    return save_json_file(recipes, RECIPES_FILE)
 
 def calculate_recipe_cost(ingredients: list[dict], products_df: pd.DataFrame) -> tuple[float, list[dict]]:
     """Calculate total cost of recipe ingredients"""
@@ -156,7 +137,7 @@ def calculate_recipe_cost(ingredients: list[dict], products_df: pd.DataFrame) ->
         if not product_match.empty:
             product = product_match.iloc[0]
             product_unit = product['Unit']
-            product_cost = product['Cost per Unit']
+            product_cost = product['Current Price per Unit']
             
             # Simple cost calculation (can be enhanced with unit conversions)
             if unit == product_unit:
@@ -175,10 +156,6 @@ def calculate_recipe_cost(ingredients: list[dict], products_df: pd.DataFrame) ->
             total_cost += cost
     
     return total_cost, ingredient_costs
-
-def format_currency(amount: float) -> str:
-    """Format amount as currency"""
-    return f"${amount:.2f}"
 
 def save_recipe(recipe_data: dict) -> tuple[bool, str]:
     """Save a new recipe to the JSON file"""
@@ -203,7 +180,7 @@ def save_recipe(recipe_data: dict) -> tuple[bool, str]:
         recipes[recipe_data['name']] = recipe_data
         
         if save_recipes(recipes):
-            return True, f"Recipe '{recipe_data['name']}' saved successfully!"
+            return True, get_recipe_text("recipe_saved", "en", name=recipe_data['name'])
         else:
             return False, "Error saving recipe."
     except Exception as e:
@@ -217,30 +194,28 @@ def update_recipe(old_name: str, recipe_data: dict) -> tuple[bool, str]:
         if old_name not in recipes:
             return False, f"Recipe '{old_name}' not found!"
         
-        # Calculate recipe cost
+        # Calculate new recipe cost
         products_df = load_products()
         total_cost, ingredient_costs = calculate_recipe_cost(recipe_data['ingredients'], products_df)
         
-        # Add cost information to recipe
+        # Update recipe data
         recipe_data['total_cost'] = total_cost
         recipe_data['ingredient_costs'] = ingredient_costs
         recipe_data['updated_at'] = datetime.now().isoformat()
         
         # Remove old recipe and add updated one
-        if old_name != recipe_data['name']:
-            del recipes[old_name]
-        
+        del recipes[old_name]
         recipes[recipe_data['name']] = recipe_data
         
         if save_recipes(recipes):
-            return True, "Recipe updated successfully!"
+            return True, get_recipe_text("recipe_updated", "en")
         else:
             return False, "Error updating recipe."
     except Exception as e:
         return False, f"Error updating recipe: {e}"
 
 def delete_recipe(recipe_name: str) -> tuple[bool, str]:
-    """Delete a recipe from the JSON file"""
+    """Delete a recipe"""
     try:
         recipes = load_recipes()
         
@@ -250,7 +225,7 @@ def delete_recipe(recipe_name: str) -> tuple[bool, str]:
         del recipes[recipe_name]
         
         if save_recipes(recipes):
-            return True, f"Recipe '{recipe_name}' deleted successfully!"
+            return True, get_recipe_text("recipe_deleted", "en", name=recipe_name)
         else:
             return False, "Error deleting recipe."
     except Exception as e:
@@ -280,9 +255,9 @@ def search_recipes(recipes: dict, search_term: str) -> dict:
     if not search_term:
         return recipes
     
+    search_term = search_term.lower()
     filtered = {}
-    search_lower = search_term.lower()
     for name, recipe in recipes.items():
-        if search_lower in name.lower():
+        if search_term in name.lower():
             filtered[name] = recipe
     return filtered

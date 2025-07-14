@@ -12,6 +12,8 @@ SIDEBAR_TRANSLATIONS = {
         "variance_calculator_desc": "Calculate and analyze inventory variances",
         "sheet_to_shelf": "📋 Sheet-to-Shelf Inventory",
         "sheet_to_shelf_desc": "Conduct physical inventory counts",
+        "inventory_summary": "📊 Inventory Summary",
+        "inventory_summary_desc": "View comprehensive inventory summaries and financial analysis",
         "current_page": "Current Page:",
         "language_label": "Language"
     },
@@ -25,6 +27,8 @@ SIDEBAR_TRANSLATIONS = {
         "variance_calculator_desc": "Calcula y analiza variaciones de inventario",
         "sheet_to_shelf": "📋 Inventario de Hoja a Estante",
         "sheet_to_shelf_desc": "Realiza conteos físicos de inventario",
+        "inventory_summary": "📊 Resumen de Inventario",
+        "inventory_summary_desc": "Ver resúmenes completos de inventario y análisis financiero",
         "current_page": "Página Actual:",
         "language_label": "Idioma"
     }
@@ -67,6 +71,11 @@ def get_navigation_pages(current_lang):
             "name": "4_SheetToShelfInventory",
             "display": get_sidebar_text("sheet_to_shelf", current_lang),
             "description": get_sidebar_text("sheet_to_shelf_desc", current_lang)
+        },
+        {
+            "name": "5_InventorySummary",
+            "display": get_sidebar_text("inventory_summary", current_lang),
+            "description": get_sidebar_text("inventory_summary_desc", current_lang)
         }
     ]
 

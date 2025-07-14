@@ -84,7 +84,7 @@ TRANSLATIONS: Dict[str, Dict[str, str]] = {
         "pack_size": "Pack Size",
         "category": "Category",
         "unit_of_measure": "Unit of Measure",
-        "cost_per_unit": "Cost per Unit",
+        "cost_per_unit": "Current Price per Unit",
         "cost_per_unit_help": "Enter the cost in dollars",
         "location": "Location",
         "location_help": "Select where this product is stored",

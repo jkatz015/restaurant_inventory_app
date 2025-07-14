@@ -107,7 +107,7 @@ def calculate_theoretical_cost(recipe_name, recipes, products_df):
         
         if not product_match.empty:
             product = product_match.iloc[0]
-            product_cost = product['Cost per Unit']
+            product_cost = product['Current Price per Unit']
             cost = quantity * product_cost
             
             ingredient_costs.append({
@@ -135,7 +135,7 @@ def calculate_actual_cost(actual_ingredients, products_df):
         
         if not product_match.empty:
             product = product_match.iloc[0]
-            product_cost = product['Cost per Unit']
+            product_cost = product['Current Price per Unit']
             cost = quantity * product_cost
             
             ingredient_costs.append({
