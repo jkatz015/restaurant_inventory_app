@@ -1,10 +1,8 @@
 import streamlit as st
 import pandas as pd
-import plotly.express as px
 
 def main():
     """Variance Calculator page - Calculate and analyze inventory variances"""
-    
     st.header("📊 Variance Calculator")
     st.markdown("Calculate and analyze inventory variances between expected and actual counts")
     

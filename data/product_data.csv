@@ -1,4 +1,21 @@
-Product Name,SKU,Category,Pack Size,Unit,Cost per Unit,Cost per Oz
-Steak-Ribeye,4837261,Beef,30 lbs case,lb,14.0,0.88
-Seabass,9201547,Fish,10.0 lbs case,lb,19.89,1.24
-Potato Baby Red,7153084,Produce,40.0 lb case,case,20.0,0.1
+Product Name,SKU,Location,Category,Pack Size,Unit,Current Price per Unit,Last Price per Unit,Last Updated Date,Cost per Oz
+Steak-Ribeye,4837261,Freezer,Beef,30 lbs case,lb,19.5,17.0,2025-07-14,1.21875
+Seabass,9201547,Freezer,Fish,10.0 lbs case,lb,24.75,21.25,2025-07-14,1.546875
+Potato Baby Red,7153084,Walk-in Cooler,Produce,40.0 lb case,case,26.25,22.0,2025-07-14,0.13671875
+Onion Yellow,1234567,Walk-in Cooler,Produce,50 lb bag,lb,1.35,0.95,2025-07-14,0.084375
+Garlic Fresh,2345678,Walk-in Cooler,Produce,10 lb case,lb,3.65,2.75,2025-07-14,0.228125
+Tomato Roma,3456789,Walk-in Cooler,Produce,25 lb case,lb,1.95,1.4,2025-07-14,0.121875
+Olive Oil Extra Virgin,4567890,Dry Goods Storage,Dry Goods,1 gallon jug,gallon,17.5,13.8,2025-07-14,0.13671875
+Salt Kosher,5678901,Dry Goods Storage,Dry Goods,3 lb box,lb,1.85,1.35,2025-07-14,0.115625
+Black Pepper Ground,6789012,Dry Goods Storage,Dry Goods,1 lb container,lb,12.25,9.2,2025-07-14,0.765625
+Butter Unsalted,7890123,Walk-in Cooler,Dairy,1 lb block,lb,6.95,4.6,2025-07-14,0.434375
+Heavy Cream,8901234,Walk-in Cooler,Dairy,1 quart carton,quart,6.25,4.1,2025-07-14,0.1953125
+Parmesan Cheese,9012345,Walk-in Cooler,Dairy,5 lb block,lb,17.75,13.5,2025-07-14,1.109375
+Flour All Purpose,123456,Dry Goods Storage,Dry Goods,50 lb bag,lb,0.85,0.52,2025-07-14,0.053125
+Eggs Large,1234568,Walk-in Cooler,Dairy,30 dozen case,dozen,3.95,2.75,2025-07-14,3.95
+Basil Fresh,2345679,Walk-in Cooler,Produce,1 lb bunch,bunch,5.25,3.8,2025-07-14,5.25
+Mushroom Button,3456780,Walk-in Cooler,Produce,10 lb case,lb,4.75,3.5,2025-07-14,0.296875
+Chicken Breast,4567891,Freezer,Chicken,40 lb case,lb,4.45,3.1,2025-07-14,0.278125
+Rice White,5678902,Dry Goods Storage,Dry Goods,50 lb bag,lb,0.75,0.4,2025-07-14,0.046875
+Broth Chicken,6789013,Dry Goods Storage,Dry Goods,1 gallon jug,gallon,3.95,2.75,2025-07-14,0.030859375
+Wine White Cooking,7890124,Dry Goods Storage,Wine,750 ml bottle,bottle,12.95,9.2,2025-07-14,12.95

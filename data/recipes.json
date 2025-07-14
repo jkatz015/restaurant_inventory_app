@@ -1,0 +1,329 @@
+{
+  "Classic Spaghetti Carbonara": {
+    "name": "Classic Spaghetti Carbonara",
+    "description": "Traditional Italian pasta dish with eggs, cheese, and pancetta",
+    "servings": 4,
+    "prep_time": 15,
+    "cook_time": 20,
+    "category": "Main Course",
+    "ingredients": [
+      {
+        "product_name": "Flour All Purpose",
+        "quantity": 1.0,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Eggs Large",
+        "quantity": 4.0,
+        "unit": "each"
+      },
+      {
+        "product_name": "Parmesan Cheese",
+        "quantity": 0.5,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Black Pepper Ground",
+        "quantity": 0.1,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Salt Kosher",
+        "quantity": 0.2,
+        "unit": "lb"
+      }
+    ],
+    "ingredient_costs": [
+      {
+        "product_name": "Flour All Purpose",
+        "quantity": 1.0,
+        "unit": "lb",
+        "cost": 0.45,
+        "unit_cost": 0.45
+      },
+      {
+        "product_name": "Eggs Large",
+        "quantity": 4.0,
+        "unit": "each",
+        "cost": 0.83,
+        "unit_cost": 2.5
+      },
+      {
+        "product_name": "Parmesan Cheese",
+        "quantity": 0.5,
+        "unit": "lb",
+        "cost": 6.0,
+        "unit_cost": 12.0
+      },
+      {
+        "product_name": "Black Pepper Ground",
+        "quantity": 0.1,
+        "unit": "lb",
+        "cost": 0.85,
+        "unit_cost": 8.5
+      },
+      {
+        "product_name": "Salt Kosher",
+        "quantity": 0.2,
+        "unit": "lb",
+        "cost": 0.24,
+        "unit_cost": 1.2
+      }
+    ],
+    "total_cost": 8.37,
+    "cost_per_serving": 2.09,
+    "instructions": "1. Boil pasta in salted water until al dente\n2. Whisk eggs and cheese in a bowl\n3. Cook pancetta until crispy\n4. Toss hot pasta with egg mixture and pancetta\n5. Season with black pepper and serve immediately",
+    "created_date": "2024-01-15T10:30:00",
+    "last_modified": "2024-01-15T10:30:00"
+  },
+  "Grilled Chicken with Herbs": {
+    "name": "Grilled Chicken with Herbs",
+    "description": "Simple grilled chicken breast with fresh herbs and lemon",
+    "servings": 6,
+    "prep_time": 20,
+    "cook_time": 25,
+    "category": "Main Course",
+    "ingredients": [
+      {
+        "product_name": "Chicken Breast",
+        "quantity": 3.0,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Olive Oil Extra Virgin",
+        "quantity": 0.25,
+        "unit": "gallon"
+      },
+      {
+        "product_name": "Garlic Fresh",
+        "quantity": 0.5,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Basil Fresh",
+        "quantity": 2.0,
+        "unit": "bunch"
+      },
+      {
+        "product_name": "Salt Kosher",
+        "quantity": 0.1,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Black Pepper Ground",
+        "quantity": 0.05,
+        "unit": "lb"
+      }
+    ],
+    "ingredient_costs": [
+      {
+        "product_name": "Chicken Breast",
+        "quantity": 3.0,
+        "unit": "lb",
+        "cost": 8.55,
+        "unit_cost": 2.85
+      },
+      {
+        "product_name": "Olive Oil Extra Virgin",
+        "quantity": 0.25,
+        "unit": "gallon",
+        "cost": 3.125,
+        "unit_cost": 12.5
+      },
+      {
+        "product_name": "Garlic Fresh",
+        "quantity": 0.5,
+        "unit": "lb",
+        "cost": 1.25,
+        "unit_cost": 2.5
+      },
+      {
+        "product_name": "Basil Fresh",
+        "quantity": 2.0,
+        "unit": "bunch",
+        "cost": 7.0,
+        "unit_cost": 3.5
+      },
+      {
+        "product_name": "Salt Kosher",
+        "quantity": 0.1,
+        "unit": "lb",
+        "cost": 0.12,
+        "unit_cost": 1.2
+      },
+      {
+        "product_name": "Black Pepper Ground",
+        "quantity": 0.05,
+        "unit": "lb",
+        "cost": 0.425,
+        "unit_cost": 8.5
+      }
+    ],
+    "total_cost": 20.47,
+    "cost_per_serving": 3.41,
+    "instructions": "1. Season chicken breasts with salt and pepper\n2. Heat grill to medium-high\n3. Brush chicken with olive oil\n4. Grill 6-8 minutes per side until internal temperature reaches 165\u00c2\u00b0F\n5. Let rest 5 minutes before slicing\n6. Garnish with fresh herbs and lemon wedges",
+    "created_date": "2024-01-15T11:00:00",
+    "last_modified": "2024-01-15T11:00:00"
+  },
+  "Creamy Mushroom Risotto": {
+    "name": "Creamy Mushroom Risotto",
+    "description": "Rich and creamy risotto with saut\u00c3\u00a9ed mushrooms and parmesan",
+    "servings": 4,
+    "prep_time": 10,
+    "cook_time": 30,
+    "category": "Main Course",
+    "ingredients": [
+      {
+        "product_name": "Rice White",
+        "quantity": 1.0,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Mushroom Button",
+        "quantity": 1.5,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Onion Yellow",
+        "quantity": 0.5,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Garlic Fresh",
+        "quantity": 0.25,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Olive Oil Extra Virgin",
+        "quantity": 0.125,
+        "unit": "gallon"
+      },
+      {
+        "product_name": "Butter Unsalted",
+        "quantity": 0.5,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Parmesan Cheese",
+        "quantity": 0.25,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Broth Chicken",
+        "quantity": 0.5,
+        "unit": "gallon"
+      },
+      {
+        "product_name": "Salt Kosher",
+        "quantity": 0.1,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Black Pepper Ground",
+        "quantity": 0.05,
+        "unit": "lb"
+      }
+    ],
+    "ingredient_costs": [
+      {
+        "product_name": "Rice White",
+        "quantity": 1.0,
+        "unit": "lb",
+        "cost": 0.35,
+        "unit_cost": 0.35
+      },
+      {
+        "product_name": "Mushroom Button",
+        "quantity": 1.5,
+        "unit": "lb",
+        "cost": 4.875,
+        "unit_cost": 3.25
+      },
+      {
+        "product_name": "Onion Yellow",
+        "quantity": 0.5,
+        "unit": "lb",
+        "cost": 0.445,
+        "unit_cost": 0.89
+      },
+      {
+        "product_name": "Garlic Fresh",
+        "quantity": 0.25,
+        "unit": "lb",
+        "cost": 0.625,
+        "unit_cost": 2.5
+      },
+      {
+        "product_name": "Olive Oil Extra Virgin",
+        "quantity": 0.125,
+        "unit": "gallon",
+        "cost": 1.5625,
+        "unit_cost": 12.5
+      },
+      {
+        "product_name": "Butter Unsalted",
+        "quantity": 0.5,
+        "unit": "lb",
+        "cost": 2.125,
+        "unit_cost": 4.25
+      },
+      {
+        "product_name": "Parmesan Cheese",
+        "quantity": 0.25,
+        "unit": "lb",
+        "cost": 3.0,
+        "unit_cost": 12.0
+      },
+      {
+        "product_name": "Broth Chicken",
+        "quantity": 0.5,
+        "unit": "gallon",
+        "cost": 1.25,
+        "unit_cost": 2.5
+      },
+      {
+        "product_name": "Salt Kosher",
+        "quantity": 0.1,
+        "unit": "lb",
+        "cost": 0.12,
+        "unit_cost": 1.2
+      },
+      {
+        "product_name": "Black Pepper Ground",
+        "quantity": 0.05,
+        "unit": "lb",
+        "cost": 0.425,
+        "unit_cost": 8.5
+      }
+    ],
+    "total_cost": 14.3875,
+    "cost_per_serving": 3.6,
+    "instructions": "1. Heat olive oil in large pan over medium heat\n2. Saut\u00c3\u00a9 onions and garlic until softened\n3. Add mushrooms and cook until golden\n4. Add rice and stir for 1 minute\n5. Gradually add hot broth, stirring constantly\n6. Cook until rice is creamy and al dente (about 20 minutes)\n7. Remove from heat and stir in butter and parmesan\n8. Season with salt and pepper to taste\n9. Let stand 2 minutes before serving",
+    "created_date": "2024-01-15T11:30:00",
+    "last_modified": "2024-01-15T11:30:00"
+  },
+  "Test Recipe": {
+    "name": "Test Recipe",
+    "description": "Updated!",
+    "servings": 4,
+    "prep_time": 10,
+    "cook_time": 20,
+    "category": "Test",
+    "instructions": "Mix and cook.",
+    "ingredients": [
+      {
+        "product_name": "Flour",
+        "quantity": 2,
+        "unit": "lb"
+      },
+      {
+        "product_name": "Water",
+        "quantity": 1,
+        "unit": "gallon"
+      }
+    ],
+    "total_cost": 0,
+    "ingredient_costs": [],
+    "updated_at": "2025-07-14T08:59:17.728486"
+  }
+}
