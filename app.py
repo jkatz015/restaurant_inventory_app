@@ -7,6 +7,44 @@ import sys
 # Add pages directory to path for dynamic imports
 sys.path.append('pages')
 
+# Language translations for main app
+MAIN_TRANSLATIONS = {
+    "en": {
+        "navigation_title": "📋 Navigation",
+        "product_database": "📦 Product Database",
+        "product_database_desc": "Manage product catalog and inventory items",
+        "recipe_builder": "👨‍🍳 Recipe Builder", 
+        "recipe_builder_desc": "Create and manage recipes with ingredient lists",
+        "variance_calculator": "📊 Variance Calculator",
+        "variance_calculator_desc": "Calculate and analyze inventory variances",
+        "sheet_to_shelf": "📋 Sheet-to-Shelf Inventory",
+        "sheet_to_shelf_desc": "Conduct physical inventory counts",
+        "current_page": "Current Page:",
+        "app_title": "🍽️ Restaurant Kitchen Inventory",
+        "company_name": "Curated Restaurant Consulting"
+    },
+    "es": {
+        "navigation_title": "📋 Navegación",
+        "product_database": "📦 Base de Datos de Productos",
+        "product_database_desc": "Gestiona el catálogo de productos e inventario",
+        "recipe_builder": "👨‍🍳 Constructor de Recetas",
+        "recipe_builder_desc": "Crea y gestiona recetas con listas de ingredientes",
+        "variance_calculator": "📊 Calculadora de Variación",
+        "variance_calculator_desc": "Calcula y analiza variaciones de inventario",
+        "sheet_to_shelf": "📋 Inventario de Hoja a Estante",
+        "sheet_to_shelf_desc": "Realiza conteos físicos de inventario",
+        "current_page": "Página Actual:",
+        "app_title": "🍽️ Inventario de Cocina de Restaurante",
+        "company_name": "Curated Restaurant Consulting"
+    }
+}
+
+def get_main_text(key, lang="en"):
+    """Get translated text for main app"""
+    if lang not in MAIN_TRANSLATIONS:
+        lang = "en"
+    return MAIN_TRANSLATIONS[lang].get(key, key)
+
 # ===============================================================================
 # PAGE CONFIGURATION
 # ===============================================================================
@@ -101,30 +139,34 @@ def load_page_module(page_name):
 def setup_sidebar():
     """Setup sidebar with logo and navigation"""
     
-    # Navigation title (removed logo from sidebar)
-    st.sidebar.markdown("### 📋 Navigation")
+    # Language toggle in sidebar
+    lang = st.sidebar.radio("Language", ["English", "Spanish"], horizontal=True)
+    current_lang = "es" if lang == "Spanish" else "en"
+    
+    # Navigation title
+    st.sidebar.markdown(f"### {get_main_text('navigation_title', current_lang)}")
     
     # Define pages with icons and descriptions
     pages = [
         {
             "name": "1_ProductDatabase",
-            "display": "📦 Product Database",
-            "description": "Manage product catalog and inventory items"
+            "display": get_main_text("product_database", current_lang),
+            "description": get_main_text("product_database_desc", current_lang)
         },
         {
             "name": "2_RecipeBuilder", 
-            "display": "👨‍🍳 Recipe Builder",
-            "description": "Create and manage recipes with ingredient lists"
+            "display": get_main_text("recipe_builder", current_lang),
+            "description": get_main_text("recipe_builder_desc", current_lang)
         },
         {
             "name": "3_VarianceCalculator",
-            "display": "📊 Variance Calculator", 
-            "description": "Calculate and analyze inventory variances"
+            "display": get_main_text("variance_calculator", current_lang), 
+            "description": get_main_text("variance_calculator_desc", current_lang)
         },
         {
             "name": "4_SheetToShelfInventory",
-            "display": "📋 Sheet-to-Shelf Inventory",
-            "description": "Conduct physical inventory counts"
+            "display": get_main_text("sheet_to_shelf", current_lang),
+            "description": get_main_text("sheet_to_shelf_desc", current_lang)
         }
     ]
     
@@ -147,10 +189,10 @@ def setup_sidebar():
     current_page_info = next((p for p in pages if p["name"] == selected_page), None)
     if current_page_info:
         st.sidebar.markdown("---")
-        st.sidebar.markdown(f"**Current Page:** {current_page_info['display']}")
+        st.sidebar.markdown(f"**{get_main_text('current_page', current_lang)}** {current_page_info['display']}")
         st.sidebar.markdown(f"*{current_page_info['description']}*")
     
-    return selected_page
+    return selected_page, current_lang
 
 # ===============================================================================
 # MAIN APPLICATION
@@ -160,7 +202,7 @@ def main():
     """Main application entry point"""
     
     # Setup sidebar and get selected page
-    selected_page = setup_sidebar()
+    selected_page, current_lang = setup_sidebar()
     
     # Display logo in main content area (above title)
     logo = load_logo()
@@ -172,8 +214,8 @@ def main():
         st.markdown("---")
     
     # Main content area
-    st.title("🍽️ Restaurant Kitchen Inventory")
-    st.markdown("**Curated Restaurant Consulting**")
+    st.title(get_main_text("app_title", current_lang))
+    st.markdown(f"**{get_main_text('company_name', current_lang)}**")
     st.markdown("---")
     
     # Load and execute the selected page
