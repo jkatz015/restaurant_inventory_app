@@ -12,7 +12,7 @@ def main():
     lang = st.radio("Language", ["English", "Spanish"], horizontal=True)
     current_lang = "es" if lang == "Spanish" else "en"
     
-    st.header(get_text("page_title", current_lang))
+    st.header(get_text("page title", current_lang))
     st.markdown(get_text("page_caption", current_lang))
     
     # Load data
@@ -24,7 +24,7 @@ def main():
     
     # Tab 1: Create Recipe
     with tab1:
-        st.subheader(get_text("create_new_recipe", current_lang))
+        st.subheader(get_text("create new recipe", current_lang))
         
         # Initialize ingredients list
         if "ingredients" not in st.session_state:
