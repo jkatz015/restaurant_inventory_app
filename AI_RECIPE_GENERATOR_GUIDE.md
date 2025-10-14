@@ -21,6 +21,7 @@ pip install -r requirements.txt
 ```
 
 This installs:
+
 - `anthropic>=0.39.0` - Claude API client
 - `rapidfuzz>=3.0.0` - Fuzzy ingredient matching
 
@@ -34,16 +35,19 @@ This installs:
 ### 3. Set Environment Variable
 
 **Windows (PowerShell):**
+
 ```powershell
 $env:ANTHROPIC_API_KEY='sk-ant-api03-your-key-here'
 ```
 
 **Windows (Command Prompt):**
+
 ```cmd
 set ANTHROPIC_API_KEY=sk-ant-api03-your-key-here
 ```
 
 **Mac/Linux:**
+
 ```bash
 export ANTHROPIC_API_KEY='sk-ant-api03-your-key-here'
 ```
@@ -51,6 +55,7 @@ export ANTHROPIC_API_KEY='sk-ant-api03-your-key-here'
 **For Persistent Setup (recommended):**
 
 Add to your `.env` file in project root:
+
 ```
 ANTHROPIC_API_KEY=sk-ant-api03-your-key-here
 ```
@@ -103,12 +108,14 @@ data/recipes.json (same as Recipe Builder)
 ### Example 1: Simple Dish
 
 **Prompt:**
+
 ```
 Crispy buffalo chicken wings with blue cheese dressing.
 Make 6 servings with 8 oz portions.
 ```
 
 **Result:**
+
 - Claude generates full recipe with measurements in oz
 - Ingredients mapped to your products (e.g., "chicken wings" → "Chicken Wings Fresh")
 - Quantities converted (48 oz → 3 lbs)
@@ -117,6 +124,7 @@ Make 6 servings with 8 oz portions.
 ### Example 2: Complex Recipe
 
 **Prompt:**
+
 ```
 Japanese karaage (fried chicken) with the following specs:
 - Crispy coating using potato starch
@@ -127,6 +135,7 @@ Japanese karaage (fried chicken) with the following specs:
 ```
 
 **Result:**
+
 - Detailed ingredient list with precise measurements
 - Step-by-step cooking instructions
 - All ingredients matched to your database
@@ -135,6 +144,7 @@ Japanese karaage (fried chicken) with the following specs:
 ### Example 3: Prep Recipe
 
 **Prompt:**
+
 ```
 House ranch dressing for salad station.
 Makes 1 gallon yield, uses buttermilk, mayo, herbs.
@@ -142,6 +152,7 @@ Should last 7 days refrigerated.
 ```
 
 **Result:**
+
 - Prep recipe format
 - Shelf life noted in instructions
 - Scaled for volume production
@@ -163,11 +174,13 @@ Controls how strict ingredient matching is:
 ### Ingredient Mapping Results
 
 After generation, you'll see:
+
 - ✅ **Mapped**: Successfully matched to products
 - ⚠️ **Unmapped**: No match found (can edit manually)
 - **Match Rate %**: Overall matching success
 
 Click "View Mapping Details" to see:
+
 - AI ingredient name
 - Matched product name
 - Match confidence score
@@ -177,6 +190,7 @@ Click "View Mapping Details" to see:
 ### Editing Before Save
 
 You can edit:
+
 - Recipe name, description, category
 - Servings, prep time, cook time
 - Individual ingredients (add/remove/change)
@@ -207,27 +221,32 @@ The system automatically converts Claude's oz measurements:
 ## ⚠️ Troubleshooting
 
 ### "Claude API key not found"
+
 - Check environment variable is set: `echo $ANTHROPIC_API_KEY`
 - Restart terminal/IDE after setting variable
 - Verify key starts with `sk-ant-`
 
 ### "Claude didn't return valid JSON"
+
 - API might be rate-limited (wait 1 minute)
 - Prompt might be too vague (be more specific)
 - Click "View AI Raw Output" to see what was returned
 
 ### Low Match Rate (<50%)
+
 - Your product database may use different naming conventions
 - Try lowering match confidence threshold
 - Add products to database that match common ingredient names
 - Edit ingredients manually after generation
 
 ### Ingredients in Wrong Units
+
 - Check your `product_data.csv` has correct `Unit` column values
 - Common units: `lb`, `gallon`, `quart`, `dozen`, `each`, `bunch`, `case`
 - Manually edit unit in the ingredient editor before saving
 
 ### Recipe Already Exists Error
+
 - Recipe names must be unique
 - Either delete the old recipe (Recipe Builder → Edit tab)
 - Or change the new recipe name before saving
@@ -237,11 +256,13 @@ The system automatically converts Claude's oz measurements:
 ## 🔒 API Costs & Limits
 
 ### Claude API Pricing (as of 2025)
+
 - **Claude Sonnet 4**: ~$3 per million input tokens
 - Typical recipe: ~500 tokens = ~$0.0015 per recipe
 - Very affordable for restaurant use
 
 ### Rate Limits
+
 - Tier 1: 50 requests/minute
 - Tier 2: 1000 requests/minute
 
@@ -254,6 +275,7 @@ For normal usage, you won't hit limits.
 ### Writing Effective Prompts
 
 **✅ Good Prompts:**
+
 ```
 "French onion soup with beef broth, gruyere cheese,
 and caramelized onions. 8 servings, 12 oz bowls."
@@ -266,6 +288,7 @@ Makes 2 quarts, tangy Kansas City style."
 ```
 
 **❌ Vague Prompts:**
+
 ```
 "Make me soup"
 "Chicken recipe"
@@ -273,6 +296,7 @@ Makes 2 quarts, tangy Kansas City style."
 ```
 
 **Key Elements to Include:**
+
 1. Dish name and style (e.g., "Italian", "Japanese", "BBQ")
 2. Main ingredients
 3. Servings and/or portion sizes
@@ -282,6 +306,7 @@ Makes 2 quarts, tangy Kansas City style."
 ### Recipe Categories
 
 Choose appropriate categories for filtering:
+
 - **Main Course**: Entrees, proteins
 - **Appetizer**: Starters, small plates
 - **Prep Recipe**: Sauces, dressings, marinades, batters
@@ -293,6 +318,7 @@ Choose appropriate categories for filtering:
 ### Review Before Saving
 
 Always check:
+
 1. ✅ All ingredients mapped correctly
 2. ✅ Quantities make sense (48 oz chicken = 3 lbs ✓)
 3. ✅ Units match your purchasing units
@@ -304,15 +330,18 @@ Always check:
 ## 🔄 Integration with Other Pages
 
 ### Recipe Builder (Page 2)
+
 - AI-generated recipes appear alongside manual recipes
 - Edit them the same way
 - Delete if needed
 
 ### Variance Calculator (Page 3)
+
 - Use AI recipes in theoretical usage calculations
 - Calculate actual vs theoretical variances
 
 ### Inventory Summary (Page 5)
+
 - AI recipes included in cost analysis
 - Same costing algorithm applies
 
@@ -327,6 +356,7 @@ pytest tests/test_ai_recipe_generator.py -v
 ```
 
 Tests cover:
+
 - Unit conversions (oz → lb, gallon, etc.)
 - Fuzzy ingredient matching
 - Recipe format conversion
@@ -370,6 +400,7 @@ A: Yes! Include in prompt: "gluten-free", "vegetarian", "dairy-free", etc.
 ## 🚀 Future Enhancements
 
 Possible improvements:
+
 - [ ] Batch recipe generation
 - [ ] Recipe scaling (2x, 4x, etc.)
 - [ ] Nutrition calculations
@@ -389,4 +420,3 @@ Fuzzy matching via RapidFuzz library
 ---
 
 **Happy Recipe Creating! 🍽️**
-

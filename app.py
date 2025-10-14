@@ -33,11 +33,7 @@ def get_main_text(key, lang="en"):
 # ===============================================================================
 
 if 'current_page' not in st.session_state:
-    # Check URL parameters for direct page access
-    if 'page' in st.query_params:
-        st.session_state.current_page = st.query_params['page']
-    else:
-        st.session_state.current_page = "1_ProductDatabase"
+    st.session_state.current_page = "1_ProductDatabase"
 
 # ===============================================================================
 # UTILITY FUNCTIONS

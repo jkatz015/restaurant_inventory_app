@@ -23,14 +23,24 @@ def apply_custom_styles():
         #MainMenu {visibility: hidden;}
         footer {visibility: hidden;}
         header {visibility: hidden;}
-        
-        /* Hide the default Streamlit sidebar navigation */
+
+        /* Hide the default Streamlit sidebar navigation but keep our custom sidebar */
         [data-testid="stSidebarNav"] {display: none;}
         [data-testid="stSidebar"] [data-testid="stSidebarNav"] {display: none;}
-        
+
         /* Alternative selectors for different Streamlit versions */
         .css-1d391kg {display: none;}
         .css-1lcbmhc {display: none;}
+
+        /* Ensure our custom sidebar is visible */
+        [data-testid="stSidebar"] {
+            display: block !important;
+        }
+
+        /* Make sure sidebar content is visible */
+        .css-1d391kg .css-1lcbmhc {
+            display: block !important;
+        }
         </style>
     """
     st.markdown(hide_streamlit_style, unsafe_allow_html=True)
@@ -64,7 +74,7 @@ def display_header(logo, title, company_name):
         with col2:
             st.image(logo, width=400, use_container_width=False)
         st.markdown("---")
-    
+
     # Main content area
     st.title(title)
     st.markdown(f"**{company_name}**")
@@ -74,11 +84,11 @@ def create_main_layout():
     """Create the main layout structure"""
     # Setup page configuration
     setup_page_config()
-    
+
     # Apply custom styles
     apply_custom_styles()
-    
+
     # Load logo
     logo = load_logo()
-    
+
     return logo
