@@ -254,10 +254,24 @@ def main():
     st.caption("Powered by Claude • Generates recipes compatible with your product database")
 
     # Get API key from environment or Streamlit secrets
+    env_key = os.getenv("ANTHROPIC_API_KEY", "")
+
+    # Debug information
+    with st.expander("Debug Info", expanded=False):
+        st.write(f"Environment variable exists: {bool(env_key)}")
+        st.write(f"Environment variable length: {len(env_key)}")
+
+        try:
+            secrets_key = st.secrets["ANTHROPIC_API_KEY"]
+            st.write(f"Secrets key exists: {bool(secrets_key)}")
+            st.write(f"Secrets key length: {len(secrets_key)}")
+        except Exception as e:
+            st.write(f"Secrets error: {str(e)}")
+
     try:
-        anthropic_api_key = os.getenv("ANTHROPIC_API_KEY", "") or st.secrets["ANTHROPIC_API_KEY"]
+        anthropic_api_key = env_key or st.secrets["ANTHROPIC_API_KEY"]
     except:
-        anthropic_api_key = ""
+        anthropic_api_key = env_key
 
     # Check API key
     if not anthropic_api_key:
