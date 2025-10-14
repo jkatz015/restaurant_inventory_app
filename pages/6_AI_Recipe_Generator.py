@@ -18,7 +18,8 @@ from modules.recipe_engine import (
 st.set_page_config(page_title="AI Recipe Generator", page_icon="🤖", layout="wide")
 
 # Claude API Key
-ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY", "")
+# Check both environment variable and Streamlit secrets
+ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY", "") or st.secrets.get("ANTHROPIC_API_KEY", "")
 
 # ---------- UNIT CONVERSION ----------
 UNIT_CONVERSIONS = {
