@@ -17,9 +17,7 @@ from modules.recipe_engine import (
 # ---------- CONFIG ----------
 st.set_page_config(page_title="AI Recipe Generator", page_icon="🤖", layout="wide")
 
-# Claude API Key
-# Check both environment variable and Streamlit secrets
-ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY", "") or st.secrets.get("ANTHROPIC_API_KEY", "")
+# Claude API Key - will be set in main() function
 
 # ---------- UNIT CONVERSION ----------
 UNIT_CONVERSIONS = {
@@ -101,14 +99,14 @@ def map_ingredient_to_product(ingredient_name: str, products_df: pd.DataFrame, s
     return None, 0
 
 # ---------- CLAUDE LLM ----------
-def call_claude_for_recipe(prompt: str) -> dict:
+def call_claude_for_recipe(prompt: str, api_key: str) -> dict:
     """
     Ask Claude to generate a recipe in JSON format with oz measurements.
     """
-    if not ANTHROPIC_API_KEY:
+    if not api_key:
         return None
 
-    client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
+    client = anthropic.Anthropic(api_key=api_key)
 
     system = (
         "You are a professional culinary R&D assistant for a quick service restaurant. "
@@ -255,8 +253,14 @@ def main():
     st.title("AI Recipe Generator")
     st.caption("Powered by Claude • Generates recipes compatible with your product database")
 
+    # Get API key from environment or Streamlit secrets
+    try:
+        anthropic_api_key = os.getenv("ANTHROPIC_API_KEY", "") or st.secrets["ANTHROPIC_API_KEY"]
+    except:
+        anthropic_api_key = ""
+
     # Check API key
-    if not ANTHROPIC_API_KEY:
+    if not anthropic_api_key:
         st.error("Claude API key not found")
         st.info("Set the `ANTHROPIC_API_KEY` environment variable to use this feature.")
         st.code("# Windows (PowerShell)\n$env:ANTHROPIC_API_KEY='sk-ant-...'\n\n# Mac/Linux\nexport ANTHROPIC_API_KEY='sk-ant-...'")
@@ -311,7 +315,7 @@ def main():
             st.stop()
 
         # Call Claude
-        ai_recipe = call_claude_for_recipe(prompt)
+        ai_recipe = call_claude_for_recipe(prompt, anthropic_api_key)
 
         if not ai_recipe:
             st.stop()
