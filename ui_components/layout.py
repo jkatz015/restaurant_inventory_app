@@ -27,7 +27,7 @@ def apply_custom_styles():
         # Use a container with a specific test ID for styling
         button_container = st.container()
         with button_container:
-            if st.button("", key="sidebar_toggle_btn", help="Toggle Navigation Menu"):
+            if st.button("☰", key="sidebar_toggle_btn", help="Toggle Navigation Menu"):
                 st.session_state.sidebar_collapsed = not st.session_state.sidebar_collapsed
                 st.rerun()
 
@@ -76,21 +76,10 @@ def apply_custom_styles():
         font-family: Arial, sans-serif !important;
         letter-spacing: 0 !important;
         word-spacing: 0 !important;
-        position: relative !important;
-      }}
-
-      /* Create hamburger lines with CSS */
-      button[kind="secondary"][key="sidebar_toggle_btn"]::before {{
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 20px;
-        height: 2px;
-        background: white;
-        box-shadow: 0 -6px 0 white, 0 6px 0 white;
-        border-radius: 1px;
+        text-indent: 0 !important;
+        text-rendering: optimizeLegibility !important;
+        -webkit-font-smoothing: antialiased !important;
+        -moz-osx-font-smoothing: grayscale !important;
       }}
 
       button[kind="secondary"][key="sidebar_toggle_btn"]:hover {{
@@ -123,10 +112,6 @@ def apply_custom_styles():
           -webkit-tap-highlight-color: transparent;
         }}
 
-        button[kind="secondary"][key="sidebar_toggle_btn"]::before {{
-          width: 18px !important;
-          box-shadow: 0 -5px 0 white, 0 5px 0 white !important;
-        }}
 
         /* On mobile, show sidebar when not collapsed */
         {'[data-testid="stSidebar"] { display: block !important; }' if not collapsed else ''}
@@ -149,10 +134,6 @@ def apply_custom_styles():
           padding: 5px !important;
         }}
 
-        button[kind="secondary"][key="sidebar_toggle_btn"]::before {{
-          width: 16px !important;
-          box-shadow: 0 -4px 0 white, 0 4px 0 white !important;
-        }}
       }}
     </style>
     """
