@@ -5,6 +5,7 @@ A comprehensive, modular Streamlit application for managing restaurant inventory
 ## 🚀 Features
 
 ### 📦 **Product Database Management**
+
 - **Location-based organization** - Track products by storage locations
 - **Price history tracking** - Monitor current and historical pricing
 - **Bulk import/export** - CSV-based data management
@@ -12,6 +13,7 @@ A comprehensive, modular Streamlit application for managing restaurant inventory
 - **SKU tracking** - Unique product identification
 
 ### 📋 **Recipe Builder**
+
 - **Ingredient management** - Add/remove ingredients with quantities
 - **Cost calculations** - Automatic recipe cost analysis
 - **Category organization** - Recipe categorization system
@@ -19,19 +21,35 @@ A comprehensive, modular Streamlit application for managing restaurant inventory
 - **Cost per unit tracking** - Detailed cost breakdown
 
 ### 🤖 **AI Recipe Generator (NEW!)**
+
 - **Claude AI integration** - Generate recipes from natural language prompts
 - **Automatic ingredient mapping** - Fuzzy matching to product database
 - **Smart unit conversion** - Auto-converts oz to lb, gallon, etc.
 - **Cost estimation** - Uses real product prices for costing
 - **Full integration** - Saves to existing recipe database
 
+### 📥 **Recipe Import (NEW! PRODUCTION-GRADE)**
+
+- **Multi-format support** - Import from DOCX, PDF, CSV, Excel, and images
+- **Intelligent PDF routing** - Per-page text vs vision extraction
+- **Claude Vision API** - Extract recipes from scanned documents and photos
+- **Smart ingredient mapping** - Tiered confidence matching (auto/warn/unmapped)
+- **Unit normalization** - Handle fractions, ranges, and conversions
+- **Pydantic validation** - Ensure data consistency and quality
+- **Cost calculation** - Automatic recipe costing from product database
+- **Structured logging** - Track all import activities
+- **Security features** - MIME validation, EXIF stripping, duplicate detection
+- **Batch processing** - Import multiple recipes at once
+
 ### 📊 **Variance Calculator**
+
 - **Expected vs Actual** - Compare planned vs actual usage
 - **Cost variance analysis** - Financial impact calculations
 - **Percentage tracking** - Variance percentage calculations
 - **Detailed reporting** - Comprehensive variance reports
 
 ### 📋 **Sheet-to-Shelf Inventory**
+
 - **Physical count management** - Conduct inventory counts
 - **Location-based counting** - Sequential counting by location
 - **Auto-save functionality** - Real-time count updates
@@ -39,6 +57,7 @@ A comprehensive, modular Streamlit application for managing restaurant inventory
 - **Progress tracking** - Count completion status
 
 ### 📊 **Inventory Summary (NEW!)**
+
 - **Editable count corrections** - Fix miscounts directly from summary
 - **Location-based grouping** - Organized inventory analysis
 - **Real-time calculations** - Auto-updating values and variances
@@ -46,6 +65,7 @@ A comprehensive, modular Streamlit application for managing restaurant inventory
 - **Export functionality** - User-selectable download locations
 
 ### 💾 **Advanced Export Features**
+
 - **User-selectable downloads** - Choose where to save CSV files
 - **Detailed reporting** - Comprehensive data exports
 - **Timestamped files** - Prevent file overwrites
@@ -88,6 +108,7 @@ restuarnt_inventory_app/
 ## 🚀 Quick Start
 
 ### **Installation**
+
 ```bash
 # Clone the repository
 git clone https://github.com/jkatz015/restaurant_inventory_app.git
@@ -98,6 +119,7 @@ pip install -r requirements.txt
 ```
 
 ### **Running the App**
+
 ```bash
 # Start the Streamlit application
 streamlit run app.py
@@ -106,6 +128,7 @@ streamlit run app.py
 The app will open in your browser at `http://localhost:8501`
 
 ### **Running Tests**
+
 ```bash
 # Run all unit tests
 python -m unittest discover tests
@@ -114,18 +137,21 @@ python -m unittest discover tests
 ## 📖 Usage Guide
 
 ### **1. Product Database Setup**
+
 1. Navigate to "📦 Product Database"
 2. Add products with locations, categories, and pricing
 3. Use bulk import for large product lists
 4. Track price history and updates
 
 ### **2. Recipe Management**
+
 1. Go to "📋 Recipe Builder"
 2. Create recipes with ingredients and quantities
 3. View automatic cost calculations
 4. Organize recipes by categories
 
 ### **2b. AI Recipe Generation** 🤖
+
 1. Navigate to "🤖 AI Recipe Generator"
 2. **Set API key** - Add `ANTHROPIC_API_KEY` environment variable
 3. **Describe recipe** - Enter natural language prompt
@@ -134,12 +160,14 @@ python -m unittest discover tests
 6. See [AI_RECIPE_GENERATOR_GUIDE.md](AI_RECIPE_GENERATOR_GUIDE.md) for detailed setup
 
 ### **3. Variance Analysis**
+
 1. Access "📊 Variance Calculator"
 2. Compare expected vs actual usage
 3. Analyze cost variances and percentages
 4. Generate detailed variance reports
 
 ### **4. Physical Inventory Counting**
+
 1. Navigate to "📋 Sheet-to-Shelf Inventory"
 2. Start a new count with location filtering
 3. Count items sequentially by location
@@ -147,6 +175,7 @@ python -m unittest discover tests
 5. Complete counts and move to history
 
 ### **5. Inventory Summary & Corrections**
+
 1. Go to "📊 Inventory Summary"
 2. View comprehensive count summaries by location
 3. **Edit actual counts directly** - Fix miscounts without returning to counting page
@@ -156,6 +185,7 @@ python -m unittest discover tests
 ## 🆕 Latest Features
 
 ### **AI Recipe Generator** 🤖
+
 - **Claude AI integration** - Natural language recipe generation
 - **Intelligent ingredient mapping** - Fuzzy matching with 75%+ confidence
 - **Automatic unit conversion** - Converts oz → lb, gallon, quart, dozen, etc.
@@ -165,18 +195,21 @@ python -m unittest discover tests
 - **See setup guide**: [AI_RECIPE_GENERATOR_GUIDE.md](AI_RECIPE_GENERATOR_GUIDE.md)
 
 ### **Editable Summary Page**
+
 - **Direct count corrections** - Edit actual counts from summary view
 - **Real-time calculations** - Values and variances update automatically
 - **Location-based organization** - Grouped by storage locations
 - **Visual variance indicators** - Color-coded variance tracking
 
 ### **User-Selectable Downloads**
+
 - **Choose download location** - Save CSV files where you want
 - **Standard browser experience** - Native download dialogs
 - **Timestamped filenames** - Prevent file overwrites
 - **Multiple export types** - Count data and summary exports
 
 ### **Enhanced Inventory Management**
+
 - **Location-based counting** - Sequential inventory by storage area
 - **Auto-save functionality** - Real-time count updates
 - **Progress tracking** - Monitor count completion status
@@ -219,6 +252,7 @@ We welcome contributions! Please follow these guidelines:
 6. **Open a Pull Request**
 
 ### **Development Guidelines**
+
 - Add business logic to `modules/`
 - Add UI components to `ui_components/`
 - Add new pages to `pages/`
