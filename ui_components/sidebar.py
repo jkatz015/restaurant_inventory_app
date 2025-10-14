@@ -6,7 +6,7 @@ SIDEBAR_TRANSLATIONS = {
         "navigation_title": "📋 Navigation",
         "product_database": "📦 Product Database",
         "product_database_desc": "Manage product catalog and inventory items",
-        "recipe_builder": "👨‍🍳 Recipe Builder", 
+        "recipe_builder": "👨‍🍳 Recipe Builder",
         "recipe_builder_desc": "Create and manage recipes with ingredient lists",
         "variance_calculator": "📊 Variance Calculator",
         "variance_calculator_desc": "Calculate and analyze inventory variances",
@@ -14,6 +14,8 @@ SIDEBAR_TRANSLATIONS = {
         "sheet_to_shelf_desc": "Conduct physical inventory counts",
         "inventory_summary": "📊 Inventory Summary",
         "inventory_summary_desc": "View comprehensive inventory summaries and financial analysis",
+        "ai_recipe_generator": "🤖 AI Recipe Generator",
+        "ai_recipe_generator_desc": "Generate recipes using AI with automatic ingredient mapping",
         "current_page": "Current Page:",
         "language_label": "Language"
     },
@@ -29,6 +31,8 @@ SIDEBAR_TRANSLATIONS = {
         "sheet_to_shelf_desc": "Realiza conteos físicos de inventario",
         "inventory_summary": "📊 Resumen de Inventario",
         "inventory_summary_desc": "Ver resúmenes completos de inventario y análisis financiero",
+        "ai_recipe_generator": "🤖 Generador de Recetas IA",
+        "ai_recipe_generator_desc": "Generar recetas usando IA con mapeo automático de ingredientes",
         "current_page": "Página Actual:",
         "language_label": "Idioma"
     }
@@ -43,8 +47,8 @@ def get_sidebar_text(key, lang="en"):
 def create_language_selector():
     """Create language selection radio buttons"""
     lang = st.sidebar.radio(
-        "Language", 
-        ["English", "Spanish"], 
+        "Language",
+        ["English", "Spanish"],
         horizontal=True
     )
     return "es" if lang == "Spanish" else "en"
@@ -58,13 +62,13 @@ def get_navigation_pages(current_lang):
             "description": get_sidebar_text("product_database_desc", current_lang)
         },
         {
-            "name": "2_RecipeBuilder", 
+            "name": "2_RecipeBuilder",
             "display": get_sidebar_text("recipe_builder", current_lang),
             "description": get_sidebar_text("recipe_builder_desc", current_lang)
         },
         {
             "name": "3_VarianceCalculator",
-            "display": get_sidebar_text("variance_calculator", current_lang), 
+            "display": get_sidebar_text("variance_calculator", current_lang),
             "description": get_sidebar_text("variance_calculator_desc", current_lang)
         },
         {
@@ -76,13 +80,18 @@ def get_navigation_pages(current_lang):
             "name": "5_InventorySummary",
             "display": get_sidebar_text("inventory_summary", current_lang),
             "description": get_sidebar_text("inventory_summary_desc", current_lang)
+        },
+        {
+            "name": "6_AI_Recipe_Generator",
+            "display": get_sidebar_text("ai_recipe_generator", current_lang),
+            "description": get_sidebar_text("ai_recipe_generator_desc", current_lang)
         }
     ]
 
 def create_navigation_buttons(pages, current_lang):
     """Create navigation buttons in the sidebar"""
     st.sidebar.markdown(f"### {get_sidebar_text('navigation_title', current_lang)}")
-    
+
     selected_page = None
     for page in pages:
         if st.sidebar.button(
@@ -92,7 +101,7 @@ def create_navigation_buttons(pages, current_lang):
         ):
             selected_page = page["name"]
             st.session_state.current_page = page["name"]
-    
+
     return selected_page
 
 def display_current_page_info(selected_page, pages, current_lang):
@@ -100,28 +109,28 @@ def display_current_page_info(selected_page, pages, current_lang):
     # If no button was clicked, use current page from session state
     if selected_page is None:
         selected_page = st.session_state.current_page
-    
+
     # Show current page info
     current_page_info = next((p for p in pages if p["name"] == selected_page), None)
     if current_page_info:
         st.sidebar.markdown("---")
         st.sidebar.markdown(f"**{get_sidebar_text('current_page', current_lang)}** {current_page_info['display']}")
         st.sidebar.markdown(f"*{current_page_info['description']}*")
-    
+
     return selected_page
 
 def setup_sidebar():
     """Setup sidebar with language selector and navigation"""
     # Language toggle in sidebar
     current_lang = create_language_selector()
-    
+
     # Get navigation pages
     pages = get_navigation_pages(current_lang)
-    
+
     # Create navigation buttons
     selected_page = create_navigation_buttons(pages, current_lang)
-    
+
     # Display current page info
     final_selected_page = display_current_page_info(selected_page, pages, current_lang)
-    
+
     return final_selected_page, current_lang

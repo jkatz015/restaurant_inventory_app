@@ -44,10 +44,10 @@ def load_page_module(page_name):
     try:
         # Remove .py extension if present
         page_name = page_name.replace('.py', '')
-        
+
         # Import the module
         module = importlib.import_module(page_name)
-        
+
         # Check if the module has a main function
         if hasattr(module, 'main'):
             return module.main
@@ -67,20 +67,20 @@ def load_page_module(page_name):
 
 def main():
     """Main application entry point"""
-    
+
     # Create main layout and get logo
     logo = create_main_layout()
-    
+
     # Setup sidebar and get selected page
     selected_page, current_lang = setup_sidebar()
-    
+
     # Display header with logo, title, and company name
     display_header(
         logo=logo,
         title=get_main_text("app_title", current_lang),
         company_name=get_main_text("company_name", current_lang)
     )
-    
+
     # Load and execute the selected page
     if selected_page:
         page_function = load_page_module(selected_page)

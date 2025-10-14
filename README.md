@@ -18,6 +18,13 @@ A comprehensive, modular Streamlit application for managing restaurant inventory
 - **Portion scaling** - Adjust recipe quantities
 - **Cost per unit tracking** - Detailed cost breakdown
 
+### 🤖 **AI Recipe Generator (NEW!)**
+- **Claude AI integration** - Generate recipes from natural language prompts
+- **Automatic ingredient mapping** - Fuzzy matching to product database
+- **Smart unit conversion** - Auto-converts oz to lb, gallon, etc.
+- **Cost estimation** - Uses real product prices for costing
+- **Full integration** - Saves to existing recipe database
+
 ### 📊 **Variance Calculator**
 - **Expected vs Actual** - Compare planned vs actual usage
 - **Cost variance analysis** - Financial impact calculations
@@ -65,7 +72,8 @@ restuarnt_inventory_app/
 │   ├── 2_RecipeBuilder.py    # Recipe creation and editing
 │   ├── 3_VarianceCalculator.py # Variance analysis interface
 │   ├── 4_SheetToShelfInventory.py # Physical count management
-│   └── 5_InventorySummary.py # Editable summary and analysis
+│   ├── 5_InventorySummary.py # Editable summary and analysis
+│   └── 6_AI_Recipe_Generator.py # AI-powered recipe generation
 ├── ui_components/            # Reusable UI components
 │   ├── forms.py             # Form components
 │   ├── layout.py            # Layout utilities
@@ -117,6 +125,14 @@ python -m unittest discover tests
 3. View automatic cost calculations
 4. Organize recipes by categories
 
+### **2b. AI Recipe Generation** 🤖
+1. Navigate to "🤖 AI Recipe Generator"
+2. **Set API key** - Add `ANTHROPIC_API_KEY` environment variable
+3. **Describe recipe** - Enter natural language prompt
+4. **Review mapping** - Check ingredient matches to your products
+5. **Edit & save** - Adjust as needed and save to recipe database
+6. See [AI_RECIPE_GENERATOR_GUIDE.md](AI_RECIPE_GENERATOR_GUIDE.md) for detailed setup
+
 ### **3. Variance Analysis**
 1. Access "📊 Variance Calculator"
 2. Compare expected vs actual usage
@@ -138,6 +154,15 @@ python -m unittest discover tests
 5. Analyze financial impact and variance trends
 
 ## 🆕 Latest Features
+
+### **AI Recipe Generator** 🤖
+- **Claude AI integration** - Natural language recipe generation
+- **Intelligent ingredient mapping** - Fuzzy matching with 75%+ confidence
+- **Automatic unit conversion** - Converts oz → lb, gallon, quart, dozen, etc.
+- **Real product pricing** - Uses your actual product costs
+- **Full compatibility** - Saves to same database as Recipe Builder
+- **Review & edit** - Adjust ingredients, quantities, and instructions before saving
+- **See setup guide**: [AI_RECIPE_GENERATOR_GUIDE.md](AI_RECIPE_GENERATOR_GUIDE.md)
 
 ### **Editable Summary Page**
 - **Direct count corrections** - Edit actual counts from summary view
@@ -214,4 +239,4 @@ For issues, questions, or feature requests:
 
 ---
 
-**Built with ❤️ using Streamlit, Pandas, and Python** 
+**Built with ❤️ using Streamlit, Pandas, and Python**
