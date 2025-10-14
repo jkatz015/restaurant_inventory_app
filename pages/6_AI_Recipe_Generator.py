@@ -254,11 +254,11 @@ def main():
     st.caption("Powered by Claude • Generates recipes compatible with your product database")
 
     # Get API key from Streamlit secrets or environment
-+    anthropic_api_key = ""
-+    if "ANTHROPIC_API_KEY" in st.secrets:
-+        anthropic_api_key = st.secrets["ANTHROPIC_API_KEY"]
-+    else:
-+        anthropic_api_key = os.environ.get("ANTHROPIC_API_KEY", "")
+    anthropic_api_key = ""
+    if "ANTHROPIC_API_KEY" in st.secrets:
+        anthropic_api_key = st.secrets["ANTHROPIC_API_KEY"]
+    else:
+        anthropic_api_key = os.environ.get("ANTHROPIC_API_KEY", "")
 
     # Check API key
     if not anthropic_api_key:
