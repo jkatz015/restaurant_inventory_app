@@ -267,6 +267,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ## 🆘 Support
 
 For issues, questions, or feature requests:
+
 - Open an issue on GitHub
 - Check existing issues for solutions
 - Review the documentation above

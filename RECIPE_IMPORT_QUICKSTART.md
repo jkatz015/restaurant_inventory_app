@@ -9,6 +9,7 @@ pip install -r requirements.txt
 ```
 
 This installs all required packages including:
+
 - python-docx (Word files)
 - pdfplumber (PDF extraction)
 - pydantic (validation)
@@ -18,16 +19,19 @@ This installs all required packages including:
 ### Step 2: Set Claude API Key
 
 **Windows PowerShell:**
+
 ```powershell
 $env:ANTHROPIC_API_KEY='sk-ant-your-key-here'
 ```
 
 **Mac/Linux:**
+
 ```bash
 export ANTHROPIC_API_KEY='sk-ant-your-key-here'
 ```
 
 **Or** create `.streamlit/secrets.toml`:
+
 ```toml
 ANTHROPIC_API_KEY = "sk-ant-your-key-here"
 ```
@@ -37,6 +41,7 @@ Get your API key: https://console.anthropic.com/settings/keys
 ### Step 3: Add Products to Database
 
 Before importing recipes, add some products to your database:
+
 1. Go to "Product Database" page
 2. Add common ingredients (flour, sugar, butter, etc.)
 3. Include quantities and units
@@ -58,6 +63,7 @@ This allows accurate ingredient mapping and cost calculation.
 ### Step 5: Try Different Formats
 
 Test the feature with various file types:
+
 - **PDF**: Recipe from a cookbook
 - **DOCX**: Word document with recipe
 - **Image**: Photo of a recipe card
@@ -91,24 +97,29 @@ Test the feature with various file types:
 ### Common Issues & Solutions
 
 **❌ "API key not found"**
+
 - Set `ANTHROPIC_API_KEY` environment variable
 - Or add to `.streamlit/secrets.toml`
 
 **❌ "No products found"**
+
 - Add products to your database first
 - Go to Product Database page
 
 **❌ "Extraction failed"**
+
 - Check file size (must be < 20MB)
 - Try a different file format
 - Ensure file is not corrupted
 
 **⚠️ "Many unmapped ingredients"**
+
 - Add more products to your database
 - Use standard ingredient names
 - Review and manually map
 
 **⚠️ "Low confidence"**
+
 - Try higher resolution image
 - Use text-based PDF instead of scan
 - Manually edit extracted text
@@ -165,6 +176,7 @@ Test the feature with various file types:
 ## ✨ What's Next?
 
 After importing your first recipe:
+
 - Import multiple recipes at once
 - Try different file formats
 - Build your recipe database

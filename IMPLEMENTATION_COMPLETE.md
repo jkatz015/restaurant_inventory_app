@@ -69,6 +69,7 @@ See **`RECIPE_IMPORT_QUICKSTART.md`** for details.
 ## 📊 What It Does
 
 ### Supported File Formats
+
 - **DOCX** - Word documents (native extraction)
 - **PDF** - Adobe PDFs (smart text/vision routing)
 - **CSV** - Structured ingredient lists
@@ -126,6 +127,7 @@ Save to Database
 ## 📈 Production Ready
 
 ### Robustness ✅
+
 - Handles mixed PDFs
 - Validates all data
 - Graceful error handling
@@ -133,6 +135,7 @@ Save to Database
 - Duplicate detection
 
 ### Security ✅
+
 - MIME type validation
 - Macro file rejection
 - EXIF metadata stripping
@@ -140,12 +143,14 @@ Save to Database
 - Page limits (50 pages)
 
 ### Performance ✅
+
 - Per-page routing (efficient)
 - Native extraction preferred
 - Vision only when needed
 - Batch processing support
 
 ### Maintainability ✅
+
 - Modular architecture
 - Type hints throughout
 - Pydantic validation
@@ -182,6 +187,7 @@ Before production use, test with:
 Before using the feature:
 
 1. **Set Claude API Key**:
+
    ```bash
    # Windows
    $env:ANTHROPIC_API_KEY='sk-ant-...'
@@ -195,6 +201,7 @@ Before using the feature:
    - This enables ingredient mapping and cost calculation
 
 3. **Install Dependencies**:
+
    ```bash
    pip install -r requirements.txt
    ```
@@ -202,12 +209,13 @@ Before using the feature:
 ## 💰 Cost Considerations
 
 Typical Claude API costs per recipe:
+
 - Text PDF: $0.01 - $0.05
 - Scanned PDF: $0.10 - $0.50
 - Image: $0.03 - $0.10
 - DOCX/CSV: $0.01 - $0.03
 
-Monitor usage at: https://console.anthropic.com
+Monitor usage at: <https://console.anthropic.com>
 
 ## 📝 Files Summary
 
@@ -245,11 +253,13 @@ IMPLEMENTATION_COMPLETE.md          ~200 lines
 ## 🎯 Next Steps
 
 1. **Install Dependencies**
+
    ```bash
    pip install -r requirements.txt
    ```
 
 2. **Configure API Key**
+
    ```bash
    export ANTHROPIC_API_KEY='your-key'
    ```
@@ -296,6 +306,7 @@ IMPLEMENTATION_COMPLETE.md          ~200 lines
 ## 🙏 Thank You
 
 This production-grade implementation includes:
+
 - **1,620+ lines** of new Python code
 - **1,000+ lines** of documentation
 - **12 major features** as specified
@@ -313,4 +324,3 @@ The feature is fully implemented and ready for testing. Start by reading `RECIPE
 **Date**: January 14, 2025
 **Feature**: Recipe Import (Production-Grade)
 **Implementation**: 100% Complete
-

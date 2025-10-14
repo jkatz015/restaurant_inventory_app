@@ -113,11 +113,13 @@ User uploads files → File Extractor → Recipe Parser → Validation → Mappi
 ## ✨ Key Features Implemented
 
 ### 1. ✅ CSV Handler
+
 - Detects headers (ingredient, qty, uom, instruction)
 - Normalizes structured data
 - Handles unstructured CSVs
 
 ### 2. ✅ Per-Page PDF Routing
+
 - Analyzes each page independently
 - Multi-metric confidence test:
   - Character count (≥200)
@@ -127,11 +129,13 @@ User uploads files → File Extractor → Recipe Parser → Validation → Mappi
 - Tracks provenance
 
 ### 3. ✅ Enhanced Scanned PDF Detection
+
 - Multi-metric confidence (not just char count)
 - 2 of 3 metrics must pass
 - Fallback to Claude Vision
 
 ### 4. ✅ Pydantic Schema Validation
+
 - Strong type checking
 - Field validators
 - Required field enforcement
@@ -139,6 +143,7 @@ User uploads files → File Extractor → Recipe Parser → Validation → Mappi
 - Clear error messages
 
 ### 5. ✅ Unit Normalization
+
 - Unicode fractions → decimals
 - ASCII fractions → decimals
 - Ranges → averages with estimate flag
@@ -146,12 +151,14 @@ User uploads files → File Extractor → Recipe Parser → Validation → Mappi
 - Pint-based conversions
 
 ### 6. ✅ Ingredient Mapping with Tiered Thresholds
+
 - ≥90%: 🟢 Green (auto-map)
 - 70-89%: 🟡 Yellow (warn)
 - <70%: 🔴 Red (unmapped)
 - Quick add button for unmapped items
 
 ### 7. ✅ Consistent Costing Schema
+
 - `quantity_oz` for all ingredients
 - `price_per_oz` from product database
 - `total_cost` per ingredient
@@ -159,6 +166,7 @@ User uploads files → File Extractor → Recipe Parser → Validation → Mappi
 - Handles unmapped ingredients gracefully
 
 ### 8. ✅ Config Updates
+
 - All required settings added
 - Thresholds configurable
 - Known UOMs list
@@ -166,12 +174,14 @@ User uploads files → File Extractor → Recipe Parser → Validation → Mappi
 - File size limits
 
 ### 9. ✅ Security & Hygiene
+
 - Reject .xlsm, .docm files (macros)
 - MIME type verification
 - EXIF stripping from images
 - SHA256 file hashing for duplicates
 
 ### 10. ✅ Structured Logging
+
 - JSON logs per file
 - Route decisions logged
 - Confidence scores tracked
@@ -180,6 +190,7 @@ User uploads files → File Extractor → Recipe Parser → Validation → Mappi
 - Success/failure tracking
 
 ### 11. ✅ Streamlit UX Enhancements
+
 - Per-file collapsible status
 - Progress indicators per stage
 - Ingredient table with badge colors
@@ -189,7 +200,9 @@ User uploads files → File Extractor → Recipe Parser → Validation → Mappi
 - Validation warnings display
 
 ### 12. ✅ Dependencies Added
+
 All required packages added to requirements.txt:
+
 - python-docx ✓
 - pdfplumber ✓
 - pdf2image ✓
@@ -240,6 +253,7 @@ All required packages added to requirements.txt:
 ## 🎯 Production Readiness
 
 ### Robustness
+
 - ✅ Handles mixed PDFs (text + scanned)
 - ✅ Multiple file format support
 - ✅ Validation prevents bad data
@@ -247,12 +261,14 @@ All required packages added to requirements.txt:
 - ✅ Error recovery mechanisms
 
 ### Performance
+
 - ✅ Per-page PDF routing (efficient)
 - ✅ Native extraction when possible
 - ✅ Vision API only when needed
 - ✅ Parallel file processing support
 
 ### Maintainability
+
 - ✅ Modular architecture
 - ✅ Clear separation of concerns
 - ✅ Comprehensive documentation
@@ -260,6 +276,7 @@ All required packages added to requirements.txt:
 - ✅ Type hints throughout
 
 ### User Experience
+
 - ✅ Progress indicators
 - ✅ Clear status messages
 - ✅ Edit before save
@@ -342,6 +359,7 @@ Before production deployment, test with:
 ## 🔮 Future Enhancements
 
 Potential improvements for v2:
+
 - Manual page selection UI for PDFs
 - Custom mapping rules
 - Bulk recipe website import
@@ -367,6 +385,7 @@ Potential improvements for v2:
 **Status**: ✅ **COMPLETE AND READY FOR TESTING**
 
 All 12 required upgrades have been implemented:
+
 1. ✅ CSV handler added
 2. ✅ Per-page PDF routing implemented
 3. ✅ Enhanced scanned PDF detection
@@ -388,4 +407,3 @@ All 12 required upgrades have been implemented:
 **Developer**: AI Assistant
 **Feature**: Recipe Import (Production-Grade)
 **Status**: Ready for QA Testing
-

@@ -14,6 +14,7 @@
 Choose your operating system:
 
 #### Windows (PowerShell)
+
 ```powershell
 # Temporary (current session only)
 $env:ANTHROPIC_API_KEY='sk-ant-api03-YOUR-KEY-HERE'
@@ -23,6 +24,7 @@ $env:ANTHROPIC_API_KEY='sk-ant-api03-YOUR-KEY-HERE'
 ```
 
 #### Windows (Command Prompt)
+
 ```cmd
 # Temporary (current session only)
 set ANTHROPIC_API_KEY=sk-ant-api03-YOUR-KEY-HERE
@@ -32,6 +34,7 @@ setx ANTHROPIC_API_KEY "sk-ant-api03-YOUR-KEY-HERE"
 ```
 
 #### Mac / Linux
+
 ```bash
 # Temporary (current session only)
 export ANTHROPIC_API_KEY='sk-ant-api03-YOUR-KEY-HERE'
@@ -63,6 +66,7 @@ Should output your key starting with `sk-ant-`
 ### 4. Restart Your Application
 
 If you already have the Streamlit app running:
+
 1. Stop it (Ctrl+C)
 2. Restart: `streamlit run app.py`
 3. Navigate to "AI Recipe Generator"
@@ -76,11 +80,14 @@ For local development, you can create a `.env` file:
 
 1. Create file named `.env` in project root
 2. Add this line:
+
    ```
    ANTHROPIC_API_KEY=sk-ant-api03-YOUR-KEY-HERE
    ```
+
 3. Install python-dotenv: `pip install python-dotenv`
 4. Add to top of `pages/6_AI_Recipe_Generator.py`:
+
    ```python
    from dotenv import load_dotenv
    load_dotenv()
@@ -102,16 +109,19 @@ For local development, you can create a `.env` file:
 ## Troubleshooting
 
 ### "API key not found" error
+
 - Make sure you've set the environment variable
 - Restart your terminal/IDE after setting it
 - Check spelling: `ANTHROPIC_API_KEY` (exact case)
 
 ### "Invalid API key" error
+
 - Verify key starts with `sk-ant-`
 - Check for extra spaces or quotes
 - Generate a new key from Anthropic Console
 
 ### Still not working?
+
 - Print the env var to check: `echo $env:ANTHROPIC_API_KEY`
 - Try restarting your computer
 - Check [AI_RECIPE_GENERATOR_GUIDE.md](AI_RECIPE_GENERATOR_GUIDE.md) for more help
@@ -121,6 +131,7 @@ For local development, you can create a `.env` file:
 ## API Costs
 
 Claude API is very affordable:
+
 - ~$3 per 1 million input tokens
 - Average recipe = 500 tokens ≈ $0.0015
 - 1000 recipes ≈ $1.50

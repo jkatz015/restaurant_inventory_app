@@ -3,12 +3,14 @@
 ## 3-Minute Setup
 
 ### Step 1: Install Dependencies (30 seconds)
+
 ```bash
 pip install -r requirements.txt
 ```
 
 ### Step 2: Get API Key (1 minute)
-1. Go to: https://console.anthropic.com/settings/keys
+
+1. Go to: <https://console.anthropic.com/settings/keys>
 2. Create account or log in
 3. Click "Create Key"
 4. Copy the key
@@ -26,6 +28,7 @@ export ANTHROPIC_API_KEY='sk-ant-your-key-here'
 ```
 
 ### Step 4: Run & Test (1 minute)
+
 ```bash
 streamlit run app.py
 ```
@@ -43,6 +46,7 @@ streamlit run app.py
 ## Example Prompts
 
 ### Quick Recipes
+
 ```
 "Grilled chicken breast with lemon and herbs, 6 servings"
 "Buffalo wings with blue cheese dressing, 8oz portions"
@@ -50,6 +54,7 @@ streamlit run app.py
 ```
 
 ### Detailed Recipes
+
 ```
 "Japanese karaage (fried chicken):
 - Crispy coating with potato starch
@@ -59,6 +64,7 @@ streamlit run app.py
 ```
 
 ### Prep Recipes
+
 ```
 "Ranch dressing for salad station:
 - Makes 1 gallon
