@@ -85,9 +85,43 @@ def apply_custom_styles():
 
       /* Sidebar collapse state */
       {'[data-testid="stSidebar"] { transform: translateX(-100%); min-width: 0 !important; max-width: 0 !important; width: 0 !important; opacity: 0; pointer-events: none; transition: transform 0.3s ease, opacity 0.3s ease; }' if collapsed else ''}
-
+      
       /* When collapsed, remove left margin from app view */
       {'[data-testid="stAppViewContainer"] { margin-left: 0 !important; }' if collapsed else ''}
+      
+      /* Mobile optimizations */
+      @media (max-width: 768px) {{
+        button[kind="secondary"][key="sidebar_toggle_btn"] {{
+          width: 48px !important;
+          height: 48px !important;
+          font-size: 24px !important;
+          top: 0.75rem;
+          left: 0.75rem;
+          /* Ensure button is easily tappable on mobile */
+          touch-action: manipulation;
+          -webkit-tap-highlight-color: transparent;
+        }}
+        
+        /* On mobile, ensure collapsed sidebar is fully hidden */
+        {'[data-testid="stSidebar"] { display: none !important; }' if collapsed else ''}
+        
+        /* Adjust app container for mobile */
+        [data-testid="stAppViewContainer"] {{
+          padding-left: 0 !important;
+          padding-right: 0 !important;
+        }}
+      }}
+      
+      /* Extra small mobile devices */
+      @media (max-width: 480px) {{
+        button[kind="secondary"][key="sidebar_toggle_btn"] {{
+          width: 44px !important;
+          height: 44px !important;
+          font-size: 22px !important;
+          top: 0.5rem;
+          left: 0.5rem;
+        }}
+      }}
     </style>
     """
     st.markdown(css, unsafe_allow_html=True)
