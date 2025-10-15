@@ -78,12 +78,22 @@ def load_product_database() -> pd.DataFrame:
 def map_ingredient_to_product(ingredient_name: str, products_df: pd.DataFrame, score_cutoff=75):
     """
     Fuzzy match ingredient name to Product Name in database.
+    Uses exact match, fuzzy match, and substring fallback.
     Returns (product_row, match_score) or (None, 0)
     """
     if not ingredient_name or products_df.empty:
         return None, 0
 
+    ingredient_lower = ingredient_name.lower().strip()
     product_names = products_df["Product Name"].astype(str).tolist()
+
+    # Try exact match (case-insensitive)
+    for idx, product_name in enumerate(product_names):
+        if product_name.lower() == ingredient_lower:
+            product_row = products_df.iloc[idx]
+            return product_row.to_dict(), 100
+
+    # Try fuzzy matching with rapidfuzz
     result = process.extractOne(
         ingredient_name,
         product_names,
@@ -94,7 +104,22 @@ def map_ingredient_to_product(ingredient_name: str, products_df: pd.DataFrame, s
     if result:
         matched_name, score, _ = result
         product_row = products_df[products_df["Product Name"] == matched_name].iloc[0]
-        return product_row.to_dict(), score
+        return product_row.to_dict(), int(score)
+
+    # Fallback: Try substring matching (ingredient name contained in product name)
+    for idx, product_name in enumerate(product_names):
+        if ingredient_lower in product_name.lower():
+            product_row = products_df.iloc[idx]
+            # Calculate a score based on length ratio (longer match = better score)
+            score = int(80 * len(ingredient_lower) / len(product_name))
+            score = max(75, min(score, 95))  # Clamp between 75-95
+            return product_row.to_dict(), score
+
+    # Also try if product name contained in ingredient (e.g., "salt" in "kosher salt")
+    for idx, product_name in enumerate(product_names):
+        if product_name.lower() in ingredient_lower:
+            product_row = products_df.iloc[idx]
+            return product_row.to_dict(), 80
 
     return None, 0
 
